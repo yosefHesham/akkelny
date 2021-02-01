@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:shape_of_view/shape_of_view.dart';
 
 class WelcomePage extends StatelessWidget {
-  final mainText;
-  WelcomePage(this.mainText);
+  final String mainText;
+  final String welcomePic;
+  WelcomePage(this.mainText, this.welcomePic);
   @override
   Widget build(BuildContext context) {
     var responsive = MediaQuery.of(context).size;
@@ -17,30 +18,39 @@ class WelcomePage extends StatelessWidget {
         Text(
           mainText,
           style: TextStyle(
-              color: welcomeTextColor,
-              fontSize: 28,
-              fontWeight: FontWeight.bold),
+              color: mainColor, fontSize: 28, fontWeight: FontWeight.bold),
         ),
-        Expanded(flex: 2, child: textWelcome()),
+        SizedBox(
+          height: 20,
+        ),
+        textWelcome(),
       ],
     );
   }
 
   Widget arcBuilder(Size responsive) {
     return ShapeOfView(
+      clipBehavior: Clip.hardEdge,
+      shape: ArcShape(
+          height: 40,
+          direction: ArcDirection.Outside,
+          position: ArcPosition.Bottom),
+      child: Container(
         height: responsive.height * .5,
-        clipBehavior: Clip.hardEdge,
-        shape: ArcShape(
-            height: 40,
-            direction: ArcDirection.Outside,
-            position: ArcPosition.Bottom),
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [firstColor, secondColor],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter)),
-        ));
+        width: double.infinity,
+        child: Align(
+          child: Image.asset(
+            this.welcomePic,
+            width: responsive.width * .7,
+          ),
+        ),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [firstColor, secondColor],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
+      ),
+    );
   }
 
   Widget textWelcome() {
@@ -48,7 +58,7 @@ class WelcomePage extends StatelessWidget {
       child: Text(
         welcomeText,
         textAlign: TextAlign.center,
-        style: TextStyle(color: Color(0xf5b5858).withOpacity(1), fontSize: 25),
+        style: TextStyle(color: Color(0xf5b5858).withOpacity(1), fontSize: 20),
         softWrap: true,
       ),
     );
