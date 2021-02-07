@@ -1,6 +1,7 @@
 import 'package:akkelny/public.dart';
 import 'package:akkelny/welcome_pages/welcome_page1-2.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroPage extends StatefulWidget {
   @override
@@ -91,12 +92,17 @@ class _IntroPageState extends State<IntroPage>
     return Visibility(
       visible: currentPage == _pages.length - 1 ? true : false,
       child: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => saveSkipIntro(),
         shape: BeveledRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(26))),
         child: Icon(Icons.arrow_forward),
       ),
     );
+  }
+
+  Future saveSkipIntro() async {
+    final shared = await SharedPreferences.getInstance();
+    await shared.setBool("intro", true);
   }
 
   Widget activePage(bool isActive) {
