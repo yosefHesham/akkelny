@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_bloc: ^6.1.1
+  font_awesome_flutter: ^8.11.0
   shape_of_view: ^1.0.2
   shared_preferences: ^0.5.12+4
 

@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: checkIntro ? AuthScreen() : IntroPage(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.deepOrange),
+        home: checkIntro ? AuthScreen() : IntroPage(),
+        routes: {AuthScreen.routeName: (context) => AuthScreen()});
   }
 }
 

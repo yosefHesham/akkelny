@@ -1,4 +1,5 @@
 import 'package:akkelny/public.dart';
+import 'package:akkelny/screens/auth_screen.dart';
 import 'package:akkelny/welcome_pages/welcome_page1-2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -92,12 +93,17 @@ class _IntroPageState extends State<IntroPage>
     return Visibility(
       visible: currentPage == _pages.length - 1 ? true : false,
       child: FloatingActionButton(
-        onPressed: () => saveSkipIntro(),
+        onPressed: () => goToAuth(),
         shape: BeveledRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(26))),
         child: Icon(Icons.arrow_forward),
       ),
     );
+  }
+
+  void goToAuth() {
+    Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
+    saveSkipIntro();
   }
 
   Future saveSkipIntro() async {
